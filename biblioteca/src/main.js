@@ -41,7 +41,7 @@ const createWindow = () => {
   loginWindow = new electronBrowserWindow({
     icon: __dirname + '/assets/images/favicon.ico',
     width: 500,
-    height: 470,
+    height: 500,
     resizable: false,
     maximizable: false,
     autoHideMenuBar: true,

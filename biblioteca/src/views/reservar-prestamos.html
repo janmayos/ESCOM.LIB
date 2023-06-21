@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Biblioteca ESCOM.LIB</title>
+  <link rel="stylesheet" href="../assets/vendors/core/core.css" />
+  <link rel="stylesheet" href="../assets/vendors/sweetalert2/sweetalert2.min.css" />
+  <link rel="stylesheet" href="../assets/fonts/feather-font/css/iconfont.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="shortcut icon" href="../assets/images/favicon.png" />
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="sidebar-brand"> Biblioteca </a>
+        <div class="sidebar-toggler not-active">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="sidebar-body">
+        <ul class="nav">
+          <li class="nav-item nav-category">Libros</li>
+          <li class="nav-item">
+            <a href="consultar.html" class="nav-link">
+              <i class="link-icon" data-feather="book"></i>
+              <span class="link-title">Consultar Libros</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="agregar.html" class="nav-link">
+              <i class="link-icon" data-feather="plus-square"></i>
+              <span class="link-title">Agregar Libros</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="modificar.html" class="nav-link">
+              <i class="link-icon" data-feather="edit"></i>
+              <span class="link-title">Modificar Libros</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="eliminar.html" class="nav-link">
+              <i class="link-icon" data-feather="trash"></i>
+              <span class="link-title">Eliminar Libros</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reservar-prestamos.html" class="nav-link">
+              <i class="link-icon" data-feather="calendar"></i>
+              <span class="link-title">Reservar y Préstamos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="multas.html" class="nav-link">
+              <i class="link-icon" data-feather="calendar"></i>
+              <span class="link-title">Multas</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page-wrapper">
+      <nav class="navbar">
+        <a href="#" class="sidebar-toggler">
+          <i data-feather="menu"></i>
+        </a>
+        <div class="navbar-content">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown nav-profile">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img id="profileUser" src="../assets/images/user.png" alt="profile" />
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <div class="dropdown-header d-flex flex-column align-items-center">
+                  <div class="figure mb-3">
+                    <img id="profileUserBox" src="../assets/images/user.png" alt="profile" />
+                  </div>
+                  <div class="info text-center">
+                    <p id="profileName" class="name font-weight-bold mb-0">
+                      Nombre Usuario
+                    </p>
+                    <p id="profileEmail" class="email text-muted mb-3">
+                      Email
+                    </p>
+                  </div>
+                </div>
+                <div class="dropdown-body">
+                  <ul class="profile-nav p-0 pt-3">
+                    <li class="nav-item">
+                      <a href="#" id="btnLogout" class="nav-link">
+                        <i data-feather="log-out"></i>
+                        <span>Cerrar Sesión</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="page-content">
+        <div class="row">
+          <!-- Reservar -->
+          <div class="col-md-6 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">Reservar Libro</h6>
+                <form onsubmit="return formReservaSubmit(event)">
+                  <div class="form-group">
+                    <label for="txtISBNReserva" class="control-label">ISBN</label>
+                    <input id="txtISBNReserva" type="text" class="form-control" placeholder="ISBN" maxlength="10"
+                      pattern="[0-9]+" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="txtFechaReserva" class="control-label">Fecha de Reserva</label>
+                    <input id="txtFechaReserva" type="date" class="form-control" required />
+                  </div>
+                  <button onclick="Swal.fire(
+                    'En desarrollo',
+                    '',
+                    'warning'
+                  )" id="btnReservar" type="submit" class="btn btn-primary submit">
+                    Reservar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Préstamos Activos -->
+          <div class="col-md-6 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">Préstamos Activos</h6>
+                <div id="prestamosActivos" class="list-group">
+                  <!-- Aquí irán los préstamos activos dinámicamente -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <p class="text-muted text-center text-md-left">
+          Copyright © 2023 <a href="https://github.com/janmayos/ESCOM.LIB">Biblioteca ESCOM.LIB</a>. Todos los derechos
+          reservados
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/vendors/core/core.js"></script>
+  <script src="./js/load-user.js"></script>
+  <script src="./js/reservar-prestamos.js"></script>
+  <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+  <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
+  <script src="../assets/vendors/feather-icons/feather.min.js"></script>
+  <script src="../assets/js/template.js"></script>
+</body>
+
+</html>
